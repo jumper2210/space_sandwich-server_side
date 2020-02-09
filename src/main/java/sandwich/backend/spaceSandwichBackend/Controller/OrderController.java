@@ -1,24 +1,50 @@
 package sandwich.backend.spaceSandwichBackend.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 import sandwich.backend.spaceSandwichBackend.Entity.Order;
+import sandwich.backend.spaceSandwichBackend.Entity.User;
+import sandwich.backend.spaceSandwichBackend.Repository.UserRepository;
 import sandwich.backend.spaceSandwichBackend.Repository.orderRepository;
+
 
 
 @CrossOrigin
 @RestController
 public class OrderController {
-
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private orderRepository or;
 
-    @PostMapping("/orders")
-    public ResponseEntity<?> setOrder(@RequestBody Order order) {
+    public boolean checkNull(Order order) throws IllegalAccessException {
+        if (order.getIngredients() != null )
+            return true;
+        else
+            return false;
+    }
 
+    @PostMapping("/zamowienia")
+    public ResponseEntity<?> createOrder(@RequestBody Order order) throws IllegalAccessException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
+
+        if (checkNull(order)) {
+            order.setUser(user);
+            or.save(order);
+        } else {
+            return new ResponseEntity<Object>("Wrong data", HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(order);
+    }
+
+    @CrossOrigin
+    @GetMapping("/zamowienia")
+    public ResponseEntity<?> retrieveAllUserOrders() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
+        return ResponseEntity.ok(user.getOrders());
     }
 }
