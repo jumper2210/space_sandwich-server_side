@@ -5,10 +5,11 @@ This application gives possibility to bulid and order a tasty sandwich. In the n
 - Spring Boot
 - JPA
 - RESTful api
-- & other ...
+- & Other ...
 - Database -> (mysql)
 ## 
 Client side -> https://github.com/jumper2210/SpaceSandwich
-
+#
+Author: Krzysztof Skoczek
 
 
