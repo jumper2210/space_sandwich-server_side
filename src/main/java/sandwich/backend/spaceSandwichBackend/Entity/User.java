@@ -12,14 +12,14 @@ import javax.validation.constraints.Size;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    private long id;
 
     @Column(unique = true)
-    @Size(min = 3, message = "Username should have min 5 chars")
+    @Size(min = 3, message = " min 3 chars")
     private String username;
 
     @Column
-    @Size(min = 6, message = "Password should have at least 6 chars.")
+    @Size(min = 6, message = "min 6 chars.")
     @JsonIgnore
     private String password;
 

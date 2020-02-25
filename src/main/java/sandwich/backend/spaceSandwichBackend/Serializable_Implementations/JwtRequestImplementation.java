@@ -3,7 +3,7 @@ package sandwich.backend.spaceSandwichBackend.Serializable_Implementations;
 import java.io.Serializable;
 
 public class JwtRequestImplementation implements Serializable {
-    private static final long serialVersionUID = 123412341234L;
+    private static final long serialVersionUID = 591111115150707L;
     private String username;
     private String password;
 

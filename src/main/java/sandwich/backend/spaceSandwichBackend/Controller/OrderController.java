@@ -8,9 +8,6 @@ import sandwich.backend.spaceSandwichBackend.Entity.Order;
 import sandwich.backend.spaceSandwichBackend.Entity.User;
 import sandwich.backend.spaceSandwichBackend.Repository.UserRepository;
 import sandwich.backend.spaceSandwichBackend.Repository.orderRepository;
-
-
-
 @CrossOrigin
 @RestController
 public class OrderController {
@@ -20,7 +17,7 @@ public class OrderController {
     private orderRepository or;
 
     public boolean checkNull(Order order) throws IllegalAccessException {
-        if (order.getIngredients() != null )
+        if (order.getIngredients() != null && order.getOrder_date() != null )
             return true;
         else
             return false;

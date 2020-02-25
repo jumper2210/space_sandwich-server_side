@@ -26,7 +26,7 @@ public class JwtUser implements UserDetailsService {
     private JwtUser userDetailsService;
 
     @Autowired
-    private JwtToken jwtToken;
+    private JwtToken jwtTokenUtil;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,7 +38,7 @@ public class JwtUser implements UserDetailsService {
                 new ArrayList<>());
     }
 
-    public JwtResponseImplementation save(User user) {
+    public JwtResponseImplementation save(UserDate user) {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
@@ -46,9 +46,9 @@ public class JwtUser implements UserDetailsService {
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
 
-        final String token = jwtToken.generateToken(userDetails);
-        final String username = jwtToken.getUsernameFromToken(token);
-        final Date date = jwtToken.getExpirationDateFromToken(token);
+        final String token = jwtTokenUtil.generateToken(userDetails);
+        final String username = jwtTokenUtil.getUsernameFromToken(token);
+        final Date date = jwtTokenUtil.getExpirationDateFromToken(token);
 
         return new JwtResponseImplementation(token, username, date);
     }

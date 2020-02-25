@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
@@ -12,28 +11,36 @@ import sandwich.backend.spaceSandwichBackend.Service.Order_date;
 import sandwich.backend.spaceSandwichBackend.Service.Ingredients;
 
 
-@Data
+
 @Entity(name = "spacesandiwch")
-@TypeDef(name = "json", typeClass = JsonStringType.class)
 @Table(name = "orders")
-public class Order implements Serializable {
-    private static final long serialVersionUID = 1L;
+@TypeDef(name = "json", typeClass = JsonStringType.class)
+
+public class Order  {
 
     @Id
     @GeneratedValue
-    private Integer id_order;
+    private Integer id;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json", nullable = false )
+    @Column(columnDefinition = "json")
     private Ingredients ingredients;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json", nullable = false )
+    @Column(columnDefinition = "json")
     private Order_date order_date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;

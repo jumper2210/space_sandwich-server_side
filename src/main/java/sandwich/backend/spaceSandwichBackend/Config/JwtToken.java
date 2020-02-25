@@ -16,7 +16,7 @@ import java.util.function.Function;
 @Component
 public class JwtToken implements Serializable {
 
-    private static final long serialVersionUID = -2222222333L;
+    private static final long serialVersionUID = -2550185165626007488L;
 
     public static final long JWT_TOKEN_VALIDITY = 6*60*60;
 
@@ -41,7 +41,7 @@ public class JwtToken implements Serializable {
     }
 
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(secret). parseClaimsJws(token).getBody();
     }
 
     private Boolean isTokenExpired(String token) {

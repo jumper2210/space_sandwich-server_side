@@ -18,6 +18,7 @@ import sandwich.backend.spaceSandwichBackend.Entity.User;
 import sandwich.backend.spaceSandwichBackend.Serializable_Implementations.JwtRequestImplementation;
 import sandwich.backend.spaceSandwichBackend.Serializable_Implementations.JwtResponseImplementation;
 import sandwich.backend.spaceSandwichBackend.Service.JwtUser;
+import sandwich.backend.spaceSandwichBackend.Service.UserDate;
 
 
 @RestController
@@ -31,6 +32,7 @@ public class UserJwtController {
 
     @Autowired
     private JwtUser userDetailsService;
+
 
     @PostMapping("/uwierzytelnienie")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequestImplementation authenticationRequest) throws Exception {
@@ -47,7 +49,7 @@ public class UserJwtController {
     }
 
     @PostMapping("/rejestracja")
-    public ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
+    public ResponseEntity<?> saveUser(@RequestBody UserDate user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 

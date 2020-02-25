@@ -4,24 +4,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Ingredients {
     @JsonProperty("wholeGrains")
     private String wholeGrains;
-    @JsonProperty("Wheat")
-    private String Wheat;
-    @JsonProperty("NoGluten")
-    private String  NoGluten;
-    @JsonProperty("Meat")
-    private String Meat;
-    @JsonProperty("Cheese")
-    private String Cheese;
-    @JsonProperty(" Salad")
-    private String Salad;
-    @JsonProperty("Bacon")
-    private String Bacon;
-    @JsonProperty("Space")
-    private String Space;
-    @JsonProperty("Barbecue")
-    private String Barbecue;
-    @JsonProperty("Ketchup")
-    private String  Ketchup;
+    @JsonProperty("wheat")
+    private String wheat;
+    @JsonProperty("noGluten")
+    private String noGluten;
+    @JsonProperty("meat")
+    private String meat;
+    @JsonProperty("cheese")
+    private String cheese;
+    @JsonProperty("salad")
+    private String salad;
+    @JsonProperty("bacon")
+    private String bacon;
+    @JsonProperty("space")
+    private String space;
+    @JsonProperty("barbecue")
+    private String barbecue;
+    @JsonProperty("ketchup")
+    private String ketchup;
 
     public String getWholeGrains() {
         return wholeGrains;
@@ -32,75 +32,75 @@ public class Ingredients {
     }
 
     public String getWheat() {
-        return Wheat;
+        return wheat;
     }
 
     public void setWheat(String wheat) {
-        Wheat = wheat;
+        wheat = wheat;
     }
 
     public String getNoGluten() {
-        return NoGluten;
+        return noGluten;
     }
 
     public void setNoGluten(String noGluten) {
-        NoGluten = noGluten;
+        noGluten = noGluten;
     }
 
     public String getMeat() {
-        return Meat;
+        return meat;
     }
 
     public void setMeat(String meat) {
-        Meat = meat;
+        meat = meat;
     }
 
     public String getCheese() {
-        return Cheese;
+        return cheese;
     }
 
     public void setCheese(String cheese) {
-        Cheese = cheese;
+        cheese = cheese;
     }
 
     public String getSalad() {
-        return Salad;
+        return salad;
     }
 
     public void setSalad(String salad) {
-        Salad = salad;
+        salad = salad;
     }
 
     public String getBacon() {
-        return Bacon;
+        return bacon;
     }
 
     public void setBacon(String bacon) {
-        Bacon = bacon;
+        bacon = bacon;
     }
 
     public String getSpace() {
-        return Space;
+        return space;
     }
 
     public void setSpace(String space) {
-        Space = space;
+        space = space;
     }
 
     public String getBarbecue() {
-        return Barbecue;
+        return barbecue;
     }
 
     public void setBarbecue(String barbecue) {
-        Barbecue = barbecue;
+        barbecue = barbecue;
     }
 
     public String getKetchup() {
-        return Ketchup;
+        return ketchup;
     }
 
     public void setKetchup(String ketchup) {
-        Ketchup = ketchup;
+        ketchup = ketchup;
     }
 
 
