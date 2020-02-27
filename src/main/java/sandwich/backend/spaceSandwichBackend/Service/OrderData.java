@@ -1,6 +1,6 @@
 package sandwich.backend.spaceSandwichBackend.Service;
 
-public class Order_date {
+public class OrderData {
 
     private String name;
 

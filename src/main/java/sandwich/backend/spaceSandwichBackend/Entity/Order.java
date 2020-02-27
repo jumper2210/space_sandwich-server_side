@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
-import sandwich.backend.spaceSandwichBackend.Service.Order_date;
+import sandwich.backend.spaceSandwichBackend.Service.OrderData;
 import sandwich.backend.spaceSandwichBackend.Service.Ingredients;
 
 
@@ -28,7 +28,7 @@ public class Order  {
 
     @Type(type = "json")
     @Column(columnDefinition = "json")
-    private Order_date order_date;
+    private  OrderData orderData;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -49,11 +49,11 @@ public class Order  {
         this.user = user;
     }
 
-    public Order_date getOrder_date(){
-        return order_date;
+    public OrderData getOrderData(){
+        return orderData;
     }
-    public void setOrder_date(Order_date order_date){
-        this.order_date = order_date;
+    public void setOrder_date(OrderData orderData){
+        this.orderData = orderData;
     }
     public Ingredients getIngredients() {
         return ingredients;

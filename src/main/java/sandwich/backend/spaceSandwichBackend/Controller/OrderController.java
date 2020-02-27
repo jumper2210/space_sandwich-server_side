@@ -17,7 +17,7 @@ public class OrderController {
     private orderRepository or;
 
     public boolean checkNull(Order order) throws IllegalAccessException {
-        if (order.getIngredients() != null && order.getOrder_date() != null )
+        if (order.getIngredients() != null && order.getOrderData() != null )
             return true;
         else
             return false;
