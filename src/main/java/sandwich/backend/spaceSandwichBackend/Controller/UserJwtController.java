@@ -4,15 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import java.util.Date;
 
-import org.springframework.web.bind.annotation.RestController;
 import sandwich.backend.spaceSandwichBackend.Config.JwtToken;
 import sandwich.backend.spaceSandwichBackend.Entity.User;
 import sandwich.backend.spaceSandwichBackend.Serializable_Implementations.JwtRequestImplementation;
@@ -40,11 +37,9 @@ public class UserJwtController {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-
         final String token = jwtToken.generateToken(userDetails);
         final String username = jwtToken.getUsernameFromToken(token);
         final Date date = jwtToken.getExpirationDateFromToken(token);
-
         return ResponseEntity.ok(new JwtResponseImplementation(token, username, date));
     }
 
@@ -52,6 +47,8 @@ public class UserJwtController {
     public ResponseEntity<?> saveUser(@RequestBody UserDate user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
+
+
 
     private void authenticate(String username, String password) throws Exception {
         try {

@@ -38,13 +38,18 @@ public class JwtUser implements UserDetailsService {
                 new ArrayList<>());
     }
 
+
+
     public JwtResponseImplementation save(UserDate user) {
+
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+        newUser.setRoles("ROLE_USER");
         ur.save(newUser);
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+
 
         final String token = jwtTokenUtil.generateToken(userDetails);
         final String username = jwtTokenUtil.getUsernameFromToken(token);

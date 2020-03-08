@@ -7,15 +7,18 @@ public class JwtRequestImplementation implements Serializable {
     private String username;
     private String password;
 
+
     //default constructor for JSON Parsing
     public JwtRequestImplementation()
     {
     }
 
-    public JwtRequestImplementation(String username, String password) {
+    public JwtRequestImplementation(String username, String password, String roles) {
         this.setUsername(username);
         this.setPassword(password);
+
     }
+
 
     public String getUsername() {
         return this.username;

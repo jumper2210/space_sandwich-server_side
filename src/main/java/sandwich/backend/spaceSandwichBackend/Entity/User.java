@@ -23,8 +23,21 @@ public class User {
     @JsonIgnore
     private String password;
 
+    @Column
+    private String roles;
+
+
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 
     public String getUsername() {
         return username;

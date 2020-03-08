@@ -44,4 +44,11 @@ public class OrderController {
         User user = userRepository.findByUsername(username);
         return ResponseEntity.ok(user.getOrders());
     }
+    @CrossOrigin
+    @GetMapping("/getUserData")
+    public ResponseEntity<?> retrieveAllUserData() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
+        return ResponseEntity.ok(user.getRoles());
+    }
 }
