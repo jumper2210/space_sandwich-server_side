@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
+import org.springframework.beans.factory.annotation.Value;
 import sandwich.backend.spaceSandwichBackend.Service.BreadTypes;
 import sandwich.backend.spaceSandwichBackend.Service.OrderData;
 import sandwich.backend.spaceSandwichBackend.Service.Ingredients;
@@ -20,8 +21,7 @@ public class Order  {
 
     @Id
     @GeneratedValue
-    private Integer id;
-
+    private Long id;
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private Ingredients ingredients;
@@ -38,15 +38,25 @@ public class Order  {
     @Column(columnDefinition = "json")
     private  OrderData orderData;
 
+    @Value("false")
+    private boolean confirmedOrder;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
+    public boolean isConfirmedOrder() {
+        return confirmedOrder;
+    }
 
-    public Integer getId() {
+    public void setConfirmedOrder(boolean confirmedOrder) {
+        this.confirmedOrder = confirmedOrder;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

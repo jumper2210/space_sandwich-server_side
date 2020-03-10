@@ -9,9 +9,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import java.util.Date;
+import java.util.List;
 
 import sandwich.backend.spaceSandwichBackend.Config.JwtToken;
+import sandwich.backend.spaceSandwichBackend.Entity.Order;
 import sandwich.backend.spaceSandwichBackend.Entity.User;
+import sandwich.backend.spaceSandwichBackend.Repository.UserRepository;
 import sandwich.backend.spaceSandwichBackend.Serializable_Implementations.JwtRequestImplementation;
 import sandwich.backend.spaceSandwichBackend.Serializable_Implementations.JwtResponseImplementation;
 import sandwich.backend.spaceSandwichBackend.Service.JwtUser;
@@ -26,11 +29,15 @@ public class UserJwtController {
 
     @Autowired
     private JwtToken jwtToken;
-
+@Autowired
+private UserRepository ur;
     @Autowired
     private JwtUser userDetailsService;
 
-
+    @GetMapping("/getAllUsers")
+    public List<User> retrieveAllUsers() {
+        return (List<User>) ur.findAll();
+    }
     @PostMapping("/uwierzytelnienie")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequestImplementation authenticationRequest) throws Exception {
 

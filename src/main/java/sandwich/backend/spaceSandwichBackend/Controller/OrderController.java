@@ -8,6 +8,9 @@ import sandwich.backend.spaceSandwichBackend.Entity.Order;
 import sandwich.backend.spaceSandwichBackend.Entity.User;
 import sandwich.backend.spaceSandwichBackend.Repository.UserRepository;
 import sandwich.backend.spaceSandwichBackend.Repository.orderRepository;
+
+import java.util.List;
+
 @CrossOrigin
 @RestController
 public class OrderController {
@@ -21,6 +24,15 @@ public class OrderController {
             return true;
         else
             return false;
+    }
+
+
+    @GetMapping("/zamowieniaAdmin")
+    public List<Order> retrieveAllUserOrdersAdmin() {
+        return (List<Order>) or.findAll();
+
+
+
     }
 
     @PostMapping("/zamowienia")
