@@ -1,5 +1,4 @@
 package sandwich.backend.spaceSandwichBackend.Controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,9 +9,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import java.util.Date;
 import java.util.List;
-
 import sandwich.backend.spaceSandwichBackend.Config.JwtToken;
-import sandwich.backend.spaceSandwichBackend.Entity.Order;
 import sandwich.backend.spaceSandwichBackend.Entity.User;
 import sandwich.backend.spaceSandwichBackend.Repository.UserRepository;
 import sandwich.backend.spaceSandwichBackend.Serializable_Implementations.JwtRequestImplementation;
@@ -29,8 +26,8 @@ public class UserJwtController {
 
     @Autowired
     private JwtToken jwtToken;
-@Autowired
-private UserRepository ur;
+    @Autowired
+    private UserRepository ur;
     @Autowired
     private JwtUser userDetailsService;
 

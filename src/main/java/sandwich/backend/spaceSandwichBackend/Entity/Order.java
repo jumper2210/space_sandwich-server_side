@@ -1,3 +1,4 @@
+
 package sandwich.backend.spaceSandwichBackend.Entity;
 
 import javax.persistence.*;

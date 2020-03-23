@@ -8,8 +8,8 @@ import sandwich.backend.spaceSandwichBackend.Entity.Order;
 import sandwich.backend.spaceSandwichBackend.Entity.User;
 import sandwich.backend.spaceSandwichBackend.Repository.UserRepository;
 import sandwich.backend.spaceSandwichBackend.Repository.orderRepository;
-
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -20,19 +20,15 @@ public class OrderController {
     private orderRepository or;
 
     public boolean checkNull(Order order) throws IllegalAccessException {
-        if (order.getIngredients() != null && order.getOrderData() != null )
+        if (order.getIngredients() != null && order.getBreadTypes() !=null && order.getSauces() !=null &&  order.getOrderData() != null )
             return true;
         else
             return false;
     }
 
-
     @GetMapping("/zamowieniaAdmin")
     public List<Order> retrieveAllUserOrdersAdmin() {
         return (List<Order>) or.findAll();
-
-
-
     }
 
     @PostMapping("/zamowienia")
@@ -48,6 +44,19 @@ public class OrderController {
         }
         return ResponseEntity.ok(order);
     }
+
+
+    @PostMapping("/zamowieniaAdmin")
+    public ResponseEntity<?> confirmOrder(@RequestBody Order order) throws IllegalAccessException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
+        Optional<Order> orderToConfirmed =  or.findById(order.getId());
+        Order orders = orderToConfirmed.get();
+        orders.setConfirmedOrder(true);
+        or.save(orders);
+        return  ResponseEntity.ok(orders);
+    }
+
 
     @CrossOrigin
     @GetMapping("/zamowienia")
