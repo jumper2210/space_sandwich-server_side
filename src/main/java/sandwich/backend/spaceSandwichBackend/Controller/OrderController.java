@@ -26,12 +26,13 @@ public class OrderController {
             return false;
     }
 
-    @GetMapping("/zamowieniaAdmin")
+
+    @GetMapping("/ordersForAdmin")
     public List<Order> retrieveAllUserOrdersAdmin() {
         return (List<Order>) or.findAll();
     }
 
-    @PostMapping("/zamowienia")
+    @PostMapping("/orders")
     public ResponseEntity<?> createOrder(@RequestBody Order order) throws IllegalAccessException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username);
@@ -46,30 +47,27 @@ public class OrderController {
     }
 
 
-    @PostMapping("/zamowieniaAdmin")
+    @PostMapping("/ordersForAdmin")
     public ResponseEntity<?> confirmOrder(@RequestBody Order order) throws IllegalAccessException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username);
         Optional<Order> orderToConfirmed =  or.findById(order.getId());
         Order orders = orderToConfirmed.get();
-        orders.setConfirmedOrder(true);
-        or.save(orders);
-        return  ResponseEntity.ok(orders);
-    }
-
+        String userRole = user.getRoles();
+             if( userRole.equals("ROLE_ADMIN"))
+                {
+                    orders.setConfirmedOrder(true);
+                    or.save(orders);
+                }   else {return null;}
+                     return  ResponseEntity.ok(orders);
+                    }
 
     @CrossOrigin
-    @GetMapping("/zamowienia")
+    @GetMapping("/orders")
     public ResponseEntity<?> retrieveAllUserOrders() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username);
         return ResponseEntity.ok(user.getOrders());
     }
-    @CrossOrigin
-    @GetMapping("/getUserData")
-    public ResponseEntity<?> retrieveAllUserData() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userRepository.findByUsername(username);
-        return ResponseEntity.ok(user.getRoles());
-    }
+
 }

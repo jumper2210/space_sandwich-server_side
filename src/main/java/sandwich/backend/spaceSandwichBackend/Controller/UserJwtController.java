@@ -8,9 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import java.util.Date;
-import java.util.List;
 import sandwich.backend.spaceSandwichBackend.Config.JwtToken;
-import sandwich.backend.spaceSandwichBackend.Entity.User;
 import sandwich.backend.spaceSandwichBackend.Repository.UserRepository;
 import sandwich.backend.spaceSandwichBackend.Serializable_Implementations.JwtRequestImplementation;
 import sandwich.backend.spaceSandwichBackend.Serializable_Implementations.JwtResponseImplementation;
@@ -31,11 +29,8 @@ public class UserJwtController {
     @Autowired
     private JwtUser userDetailsService;
 
-    @GetMapping("/getAllUsers")
-    public List<User> retrieveAllUsers() {
-        return (List<User>) ur.findAll();
-    }
-    @PostMapping("/uwierzytelnienie")
+
+    @PostMapping("/authentication")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequestImplementation authenticationRequest) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
@@ -47,7 +42,7 @@ public class UserJwtController {
         return ResponseEntity.ok(new JwtResponseImplementation(token, username, date));
     }
 
-    @PostMapping("/rejestracja")
+    @PostMapping("/registration")
     public ResponseEntity<?> saveUser(@RequestBody UserDate user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save(user));
     }

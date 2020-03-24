@@ -43,8 +43,10 @@ public class Order  {
     private boolean confirmedOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
+
     public boolean isConfirmedOrder() {
         return confirmedOrder;
     }
